@@ -4,8 +4,8 @@
 
 clear all
 set mem 1G
-set matsize 10000
-set maxvar 10000
+// set matsize 10000
+// set maxvar 10000
 
 use data/input/GrowthClimateDataset, clear
 gen temp = UDel_temp_popweight 

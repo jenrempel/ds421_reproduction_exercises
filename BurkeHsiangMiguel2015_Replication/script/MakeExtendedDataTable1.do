@@ -4,8 +4,8 @@
 
 clear all
 set mem 1G
-set matsize 10000
-set maxvar 10000
+// set matsize 10000
+// set maxvar 10000
 
 
 postfile robust mod b1 b2 using data/output/Coefficients_robustness, replace
