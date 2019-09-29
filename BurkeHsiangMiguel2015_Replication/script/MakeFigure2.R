@@ -2,12 +2,12 @@
 # SCRIPT TO MAKE FIGURE 2
 # This file calls data created in GenerateFigure2Data.do
 
-rm(list = ls())
+rm(list = ls()) # remove all objects present in the workspace/environment
 
-require(maptools)
-require(fields)
-require(classInt)
-require(plotrix)
+require(maptools) # spatial package
+require(fields) # also for spatial data: https://cran.r-project.org/web/packages/fields/fields.pdf
+require(classInt) # Selected commonly used methods for choosing univariate class intervals for mapping or other graphics purposes.
+require(plotrix) # plots, labels, axes, etc
 require(dplyr)
 "%&%"<-function(x,y)paste(x,y,sep="")  #define a function for easy string pasting
 
@@ -16,7 +16,14 @@ pdf(file="figures/MainFigs_Input/Figure2.pdf",width=10,height=5.5,useDingbats=F)
 mat <- matrix(c(1,1,2,3,1,1,4,5),nrow=2,byrow=T)
 layout(mat)
 ax = 1.5  #scaling for axes
-par(mar=c(4,4,2,1))
+par(mar=c(4,4,2,1)) # adjusts plotting parameters
+# par(mar=c()) = a numeric vector of length 4 that sets the margin sizes
+# in the order: bottom, left, top, right.
+# You can also do: mpg= which sets axis label locations
+# and las = orientation of the tick mark labels and any other text added
+# to a plot after initailization (0, 1, 2, 3).
+# See: http://rfunction.com/archives/1302
+
 
 ########################################################
 #  Panel A
@@ -26,6 +33,9 @@ resp <- read.csv("data/output/estimatedGlobalResponse.csv")
 dta <- read.csv("data/output/mainDataset.csv")
 smpl <- is.na(dta$growthWDI)==F & is.na(dta$UDel_temp_popweight)==F   #main estimation sample
 coef <- read.csv("data/output/estimatedCoefficients.csv")
+
+View(resp)
+
 
 # center response at optimum
 x = resp$x
